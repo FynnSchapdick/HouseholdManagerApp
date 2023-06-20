@@ -1,0 +1,21 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{8B601195-B363-4C53-9792-DC3ACC675587}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HouseholdManagerApp", "Source\HouseholdManagerApp\HouseholdManagerApp.csproj", "{AD13A5EE-4826-4C21-85BE-ECA09EC2A86B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{AD13A5EE-4826-4C21-85BE-ECA09EC2A86B} = {8B601195-B363-4C53-9792-DC3ACC675587}
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AD13A5EE-4826-4C21-85BE-ECA09EC2A86B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD13A5EE-4826-4C21-85BE-ECA09EC2A86B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD13A5EE-4826-4C21-85BE-ECA09EC2A86B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD13A5EE-4826-4C21-85BE-ECA09EC2A86B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
