@@ -2,7 +2,7 @@
 using Android.Content.PM;
 using Android.OS;
 
-namespace HouseholdManager.App;
+namespace HouseholdManagerApp;
 
 [Activity(Theme = "@style/Maui.SplashTheme", MainLauncher = true,
     ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode |

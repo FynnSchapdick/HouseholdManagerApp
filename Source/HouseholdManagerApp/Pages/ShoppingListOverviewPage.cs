@@ -16,13 +16,13 @@ public class ShoppingListOverviewPageState
 
 public class ShoppingListOverviewPage : Component<ShoppingListOverviewPageState>
 {
-    private readonly IParameter<ActionMenuOverlayComponentState> _actionMenuOverlayComponent;
+    private readonly IParameter<ActionMenuOverlayParameters> _actionMenuOverlayComponent;
 
     public ShoppingListOverviewPage()
     {
-        _actionMenuOverlayComponent = CreateParameter<ActionMenuOverlayComponentState>();
+        _actionMenuOverlayComponent = CreateParameter<ActionMenuOverlayParameters>();
     }
-    
+
     public override VisualNode Render()
     {
         return new NavigationPage
@@ -31,15 +31,16 @@ public class ShoppingListOverviewPage : Component<ShoppingListOverviewPageState>
             {
                 new AbsoluteLayout
                 {
-                    new FloatingActionButtonComponent(),
-                    
-                    new ActionMenuOverlayComponent(),
+                    new FloatingActionButton(),
+
+                    new ActionMenuOverlay(),
 
                     new Grid("8*,92*", "*")
                     {
-                        new ListPageAppBarComponent()
+                        new ListPageAppBar()
                             .WithTitle("ShoppingLists")
                             .WithItemCount(State.ShoppingLists.Count())
+                            .WithMenuButton()
                             .GridRow(0),
 
                         new CollectionView()

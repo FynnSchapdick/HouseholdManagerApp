@@ -3,6 +3,7 @@ using System.Linq;
 using HouseholdManagerApp.Models;
 using MauiReactor;
 using MauiReactor.Canvas;
+using MauiReactor.Parameters;
 
 namespace HouseholdManagerApp.Pages;
 
@@ -18,16 +19,24 @@ public sealed class ShoppingListDetailPageProps
 
 public sealed class ShoppingListDetailPage : Component<ShoppingListDetailPageState, ShoppingListDetailPageProps>
 {
+    private readonly IParameter<ActionMenuOverlayParameters> _parameter;
+
+    public ShoppingListDetailPage()
+    {
+        _parameter = CreateParameter<ActionMenuOverlayParameters>();
+    }
+
     public override VisualNode Render()
     {
         return new ContentPage
             {
                 new Grid("8*,92*", "*")
                 {
-                    new ListPageAppBarComponent()
+                    new ListPageAppBar()
                         .WithTitle(State.ShoppingListDetail.Name)
                         .WithItemCount(State.ShoppingListDetail.ShoppingListItems.Count())
                         .WithBackButton()
+                        .WithMenuButton()
                         .GridRow(0),
 
                     new CollectionView()

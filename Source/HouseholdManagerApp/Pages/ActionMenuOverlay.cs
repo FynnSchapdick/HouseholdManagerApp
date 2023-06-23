@@ -5,17 +5,16 @@ using Microsoft.Maui.Layouts;
 
 namespace HouseholdManagerApp.Pages;
 
-public sealed class ActionMenuOverlayComponentState
+public sealed class ActionMenuOverlayParameters
 {
     public bool IsVisible { get; set; }
 }
 
-public sealed class ActionMenuOverlayComponent : Component
+public sealed class ActionMenuOverlay : Component
 {
     public override VisualNode Render()
     {
-        var parameter = GetParameter<ActionMenuOverlayComponentState>();
-        
+        var parameter = GetParameter<ActionMenuOverlayParameters>();
         return new ContentView
         {
             new Grid("2*,5*", "3*,2*")
@@ -38,10 +37,15 @@ public sealed class ActionMenuOverlayComponent : Component
     private void OnGridTapped()
     {
         System.Diagnostics.Debug.WriteLine("Grid tapped");
+        var parameter = GetParameter<ActionMenuOverlayParameters>();
+        parameter.Set(x => x.IsVisible = false);
     }
-    
+
     private void OnBoxViewTapped()
     {
         System.Diagnostics.Debug.WriteLine("Boxview tapped");
+        // TODO: Action
+        var parameter = GetParameter<ActionMenuOverlayParameters>();
+        parameter.Set(x => x.IsVisible = false);
     }
 }

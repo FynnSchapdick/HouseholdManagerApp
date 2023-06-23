@@ -4,25 +4,25 @@ using Microsoft.Maui.Layouts;
 
 namespace HouseholdManagerApp.Pages;
 
-public sealed class FloatingActionButtonComponent : Component
+public sealed class FloatingActionButton : Component
 {
     private string _buttonText = "+";
     private Color _backgroundColor = Color.FromArgb("2B0B98");
     private Action _onClicked = () => { };
 
-    public FloatingActionButtonComponent WithText(string text)
+    public FloatingActionButton WithText(string text)
     {
         _buttonText = text;
         return this;
     }
 
-    public FloatingActionButtonComponent WithBackgroundColor(Color color)
+    public FloatingActionButton WithBackgroundColor(Color color)
     {
         _backgroundColor = color;
         return this;
     }
 
-    public FloatingActionButtonComponent OnClicked(Action onClicked)
+    public FloatingActionButton OnClicked(Action onClicked)
     {
         _onClicked = onClicked;
         return this;

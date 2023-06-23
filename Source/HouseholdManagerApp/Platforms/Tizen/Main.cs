@@ -1,6 +1,6 @@
 using System;
 
-namespace HouseholdManager.App;
+namespace HouseholdManagerApp;
 
 class Program : MauiApplication
 {
