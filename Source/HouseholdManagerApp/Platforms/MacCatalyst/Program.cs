@@ -1,7 +1,6 @@
-﻿using ObjCRuntime;
-using UIKit;
+﻿using UIKit;
 
-namespace HouseholdManager.App;
+namespace HouseholdManagerApp;
 
 public class Program
 {

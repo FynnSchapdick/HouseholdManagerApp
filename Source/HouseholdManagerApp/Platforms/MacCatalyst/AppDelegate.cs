@@ -1,6 +1,6 @@
 ﻿using Foundation;
 
-namespace HouseholdManager.App;
+namespace HouseholdManagerApp;
 
 [Register("AppDelegate")]
 public class AppDelegate : MauiUIApplicationDelegate

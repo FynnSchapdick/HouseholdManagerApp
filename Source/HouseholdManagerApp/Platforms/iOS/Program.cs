@@ -1,7 +1,7 @@
 ﻿using ObjCRuntime;
 using UIKit;
 
-namespace HouseholdManager.App;
+namespace HouseholdManagerApp;
 
 public class Program
 {

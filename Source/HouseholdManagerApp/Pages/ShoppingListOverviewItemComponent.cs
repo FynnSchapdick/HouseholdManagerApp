@@ -1,15 +1,15 @@
 ﻿using System;
-using HouseholdManager.App.Models;
+using HouseholdManagerApp.Models;
 using MauiReactor;
 
-namespace HouseholdManager.App.Pages;
+namespace HouseholdManagerApp.Pages;
 
 public sealed class ShoppingListOverviewItemComponent : Component
 {
-    private ShoppingList _shoppingList;
+    private ShoppingListHead _shoppingList;
     private Action _onSelectedAction;
 
-    public ShoppingListOverviewItemComponent ShoppingList(ShoppingList shoppingList)
+    public ShoppingListOverviewItemComponent ShoppingList(ShoppingListHead shoppingList)
     {
         _shoppingList = shoppingList;
         return this;
@@ -28,6 +28,8 @@ public sealed class ShoppingListOverviewItemComponent : Component
             new Label(_shoppingList.Name)
                 .VCenter()
                 .HCenter()
+                .FontSize(16)
+                .TextColor(Colors.Black)
         }
         .BackgroundColor(Colors.Azure)
         .OnTapped(_onSelectedAction);

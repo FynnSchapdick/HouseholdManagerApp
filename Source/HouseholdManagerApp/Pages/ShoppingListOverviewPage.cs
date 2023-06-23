@@ -1,53 +1,82 @@
 ﻿using System;
-using HouseholdManager.App.Models;
+using System.Collections.Generic;
+using System.Linq;
+using HouseholdManagerApp.Models;
 using MauiReactor;
+using MauiReactor.Parameters;
+using Microsoft.Maui.Layouts;
 
-namespace HouseholdManager.App.Pages;
+namespace HouseholdManagerApp.Pages;
 
 public class ShoppingListOverviewPageState
 {
     public Guid? SelectedShoppingListId { get; set; }
+    public IEnumerable<ShoppingListHead> ShoppingLists { get; set; } = Enumerable.Empty<ShoppingListHead>();
 }
 
 public class ShoppingListOverviewPage : Component<ShoppingListOverviewPageState>
 {
-    public override VisualNode Render()
+    private readonly IParameter<ActionMenuOverlayComponentState> _actionMenuOverlayComponent;
+
+    public ShoppingListOverviewPage()
     {
-        return new ContentPage("ShoppingLists")
-        {
-            new ScrollView
-            {
-                new VerticalStackLayout(2)
-                {
-                    new CollectionView()
-                        .ItemsSource(ShoppingList.Items, RenderShoppingListOverviewItem)
-                        .ItemsLayout(new VerticalLinearItemsLayout().ItemSpacing(10))
-                        .Margin(24, 20)
-                }
-            }
-        };
+        _actionMenuOverlayComponent = CreateParameter<ActionMenuOverlayComponentState>();
     }
     
+    public override VisualNode Render()
+    {
+        return new NavigationPage
+        {
+            new ContentPage
+            {
+                new AbsoluteLayout
+                {
+                    new FloatingActionButtonComponent(),
+                    
+                    new ActionMenuOverlayComponent(),
+
+                    new Grid("8*,92*", "*")
+                    {
+                        new ListPageAppBarComponent()
+                            .WithTitle("ShoppingLists")
+                            .WithItemCount(State.ShoppingLists.Count())
+                            .GridRow(0),
+
+                        new CollectionView()
+                            .ItemsSource(ShoppingListHead.Items, RenderShoppingListOverviewItem)
+                            .ItemsLayout(new VerticalLinearItemsLayout().ItemSpacing(5))
+                            .Margin(10)
+                            .GridRow(1),
+                    }
+                    .AbsoluteLayoutBounds(0,0,1,1)
+                    .AbsoluteLayoutFlags(AbsoluteLayoutFlags.All)
+                }
+            }
+            .Set(MauiControls.NavigationPage.HasNavigationBarProperty, false)
+        };
+    }
+
     protected override void OnMounted()
     {
-        Routing.RegisterRoute<ShoppingListDetailPage>("shoppinglistdetailpage");
+        SetState(x => x.ShoppingLists = ShoppingListHead.Items);
         base.OnMounted();
     }
 
-    private VisualNode RenderShoppingListOverviewItem(ShoppingList shoppingList)
+    private VisualNode RenderShoppingListOverviewItem(ShoppingListHead shoppingList)
         => new ShoppingListOverviewItemComponent()
             .ShoppingList(shoppingList)
             .OnSelected(() => OnShoppingListSelected(shoppingList));
 
-    private async void OnShoppingListSelected(ShoppingList shoppingList)
+    private async void OnShoppingListSelected(ShoppingListHead shoppingList)
     {
-        SetState(s =>
-        {
-            s.SelectedShoppingListId = shoppingList.ShoppingListId;
-        });
+        SetState(s => s.SelectedShoppingListId = shoppingList.ShoppingListId);
 
-        await MauiControls.Shell.Current.GoToAsync<ShoppingListDetailPageProps>("shoppinglistdetailpage",
-            props => props.ShoppingList = shoppingList);
-       
+        if (Navigation is null)
+        {
+            return;
+        }
+
+        await Navigation.PushAsync<ShoppingListDetailPage, ShoppingListDetailPageProps>(props =>
+            props.ShoppingListId = shoppingList.ShoppingListId);
     }
 }

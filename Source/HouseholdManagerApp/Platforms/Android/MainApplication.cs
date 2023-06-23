@@ -2,7 +2,7 @@
 using Android.Runtime;
 using System;
 
-namespace HouseholdManager.App;
+namespace HouseholdManagerApp;
 
 [Application]
 public class MainApplication : MauiApplication

@@ -1,6 +1,6 @@
 ﻿using MauiReactor;
 
-namespace HouseholdManager.App.Pages;
+namespace HouseholdManagerApp.Pages;
 
 public sealed class MainPage : Component
 {

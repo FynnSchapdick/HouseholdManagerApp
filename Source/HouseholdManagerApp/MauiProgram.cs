@@ -1,8 +1,7 @@
-﻿using HouseholdManager.App.Pages;
+﻿using HouseholdManagerApp.Pages;
 using MauiReactor;
 
-
-namespace HouseholdManager.App;
+namespace HouseholdManagerApp;
 
 public static class MauiProgram
 {
@@ -10,7 +9,7 @@ public static class MauiProgram
     {
         var builder = MauiApp.CreateBuilder();
         builder
-            .UseMauiReactorApp<MainPage>(app =>
+            .UseMauiReactorApp<ShoppingListOverviewPage>(app =>
             {
                 app.AddResource("Resources/Styles/Colors.xaml");
                 app.AddResource("Resources/Styles/Styles.xaml");
